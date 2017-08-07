@@ -1,24 +1,25 @@
-## WARNING: This plugin is depreciated and doesn't currently work.
+# WordPress Bitcoin Tips Plugin
 
-This is a plugin from 2013 and it uses Blockchain.info's API which changed since then. Updated version will follow soon.
+This plugin allows collecting bitcoin tips from WordPress blog readers. Every blog post gets its unique bitcoin address for tips. This allows for detailed stats of tips per post, so you know which texts your readers appreciate the most.
 
----
+The plugin requires that you use a BIP32/44 deterministic wallet and generates public keys based on xPub provided by you. This allows creating public keys your wallet without knowing your private keys. Only you are in control of all tips you receive.
 
-## WordPress Bitcoin Tips Plugin
+The plugin uses Blockchain.info API to handle per-post address generation and for notifications on new tips (used for stats displayed on post pages and to send you email notifications). You will need to [apply for an API key at their website](https://api.blockchain.info/customer/signup). It's free to use and they also don't have access to the tips you receive.
 
-This plugin allows collecting bitcoin tips from WordPress blog readers. Every blog post gets its unique bitcoin address for tips, which are immediately forwarded to a single address defined in settings. This allows for detailed stats of tips per post, so you know which texts your readers appreciate the most.
-
-The plugin uses Blockchain.info API to collect tips. This makes it compatible with every WordPress environment (i.e. it doesn’t require any bitcoin-specific software like bitcoind). It also adds some level of security, as even if your WordPress is hacked, your received tips are secure as there are no bitcoin private keys stored in your WordPress. Both plugin and Blockchain.info API are free to use.
-
-After installing the plugin, you need to setup your receiving bitcoin address in Settings > Bitcoin Tips and once it’s done, there will be a tipping widget displayed under each post.
+After installing the plugin, you need to configure it at in Settings > Bitcoin Tips. You need to provide your xPub key (used to generate public keys for your wallet) and Blockchain.info API key. After you do this, there will be a tipping widget displayed under each post.
 
 Main features as of current version are:
 
-* Automated generation of unique bitcoin address for each post.
-* Setting up automatic forwarding of all incoming bitcoins to a single bitcoin address configured in plugin options.
+* Automated generation of unique bitcoin address for each post, coming from your private wallet.
 * Tipping widget displayed under each post with customised copywriting and bitcoin address QR code.
 * Detecting incoming tips and calculating stats per post.
 * Publicly displaying post tips stats in the tipping widget (can be turned off).
 * Email notifications of received tips (can be turned off).
+
+---
+
+Please be aware of a BIP44 issue. Most BIP44 wallets scan up to 20 unused keys. If you have more consecutive posts with no tips at all, you might not see tips received for newer posts in your wallet (after the 20 untipped posts gap). The Blockchain.info API (and the plugin) will stop generating new keys after a gap of 20 not-tipped addresses will be detected (and the plugin won't be displayed on these posts). You can increase this gap in the settings if you know how to handle it in your wallet. A simple workaround for this is to generate a new xPub and update it in the plugin settings when you are nearly reaching or have already reached the gap limit.
+
+---
 
 The plugin is available under the MIT License.

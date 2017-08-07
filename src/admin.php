@@ -37,28 +37,19 @@ class BitcointipsSettings {
   	?>
   	<div style="width: 800px;">
       <p><strong>
-        Bitcoin Tips plugin allows you collecting bitcoin tips from your readers. Every post gets its unique bitcoin address
-        for tips. This allows for detailed stats of tips per post, so you know which texts your readers appreciate the most.
+        This plugin allows collecting bitcoin tips from WordPress blog readers. Every blog post gets its unique bitcoin address for tips.
+        This allows for detailed stats of tips per post, so you know which texts your readers appreciate the most.
       </strong>
       </p>
       <p>
-        Only you controls the tips during the entire process. You need to have a BIP32/44 deterministic wallet in order to
-        use this plugin (e.g. Blockchain.info or Trezor wallets) and you configure your wallet xPub in the plugin.
-        The xPub allows generating public keys for your wallet without knowing private keys. This is how the plugin generates
-        unique addresses for blog posts. Tips are sent directly to your wallet.
+        The plugin requires that you use a BIP32/44 deterministic wallet and generates public keys based on xPub provided by you.
+        This allows creating public keys your wallet without knowing your private keys. Only you are in control of all tips you receive.
       </p>
+       The plugin uses Blockchain.info API to handle per-post address generation and for notifications on new tips (used for stats displayed on post pages and to send you email notifications).
+       You will need to <a href="https://api.blockchain.info/customer/signup" target="_blank">apply for an API key at their website</a>a>.
       <p>
-        A minor issue with BIP 44 wallets is that most of them scan only up to 20 unused addresses. If you have more than 20
-        posts without any tips and then you receive a tip for the 21st or later, your wallet might not display it to you.
-        The tip is still there and it's yours, but your wallet will not know about it. Please be aware of this.
-        If you don't get many tips, it might be useful to generate new xPub keys when you approach to 20 not-tipped addressed.
+        Please be aware of a BIP44 issue. Most BIP44 wallets scan up to 20 unused keys. If you have more consecutive posts with no tips at all, you might not see tips received for newer posts in your wallet (after the 20 untipped posts gap). The Blockchain.info API (and the plugin) will stop generating new keys after a gap of 20 not-tipped addresses will be detected (and the plugin won't be displayed on these posts). You can increase this gap in the settings if you know how to handle it in your wallet. A simple workaround for this is to generate a new xPub and update it in the plugin settings when you are nearly reaching or have already reached the gap limit.
       </p>
-      <p>
-        The plugin uses Blockchain.info API and you need to
-        <a href="https://api.blockchain.info/customer/signup" target="_blank">apply for an API key at their website</a>.
-        I might create an independent plugin in the feature (not requiring Blockchain.info API), but there needs to be enough
-        interest in that as it requires some more development time.
-      </p
       <p>
     	 Both plugin and Blockchain.info API are free to use, though <strong>if you like this plugin, donations are welcome in the form of tips on the
   	 <a href="<?php echo BITCOINTIPS_HOME_URL; ?>" target="_blank">plugin home page</a></strong>.
