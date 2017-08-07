@@ -20,6 +20,8 @@ Main features as of current version are:
 
 Please be aware of a BIP44 issue. Most BIP44 wallets scan up to 20 unused keys. If you have more consecutive posts with no tips at all, you might not see tips received for newer posts in your wallet (after the 20 untipped posts gap). The Blockchain.info API (and the plugin) will stop generating new keys after a gap of 20 not-tipped addresses will be detected (and the plugin won't be displayed on these posts). You can increase this gap in the settings if you know how to handle it in your wallet. A simple workaround for this is to generate a new xPub and update it in the plugin settings when you are nearly reaching or have already reached the gap limit.
 
+As new addresses are generated on first pageview of a post which didn't already have an address, you might jump into this issue quickly after installing the plugin if your blog has a long history.
+
 ---
 
 The plugin is available under the MIT License.
